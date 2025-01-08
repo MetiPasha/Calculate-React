@@ -20,6 +20,33 @@ function App() {
     setOprator(op);
   };
 
+  const calculator = () => {
+    if (!inputNum || !storedValue || oprator === null) return;
+    const currentNum = inputNum;
+    let result;
+
+    switch (oprator) {
+      case "+":
+        result = storedValue + currentNum;
+        break;
+      case "-":
+        result = storedValue - currentNum;
+        break;
+      case "x":
+        result = storedValue * currentNum;
+        break;
+      case "/":
+        result = currentNum !== 0 ? storedValue / currentNum : "Error";
+        break;
+      default:
+        return;
+    }
+
+    setInputNum(result.toString());
+    setStoredValue(null);
+    setOprator(null);
+  };
+
   return (
     <>
       <div className="flex justify-center items-center min-h-screen ">
@@ -49,7 +76,7 @@ function App() {
               DEL
             </button>
             <button
-              onClick={() => digitHandeler("/")}
+              onClick={() => opratorHandeler("/")}
               className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
             >
               /
@@ -141,79 +168,15 @@ function App() {
             >
               %
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-blue-300 bg-blue-400">
+            <button
+              onClick={calculator}
+              className=" p-4 rounded-lg text-xl hover:bg-blue-300 bg-blue-400"
+            >
               =
             </button>
           </div>
         </div>
       </div>
-      {/* <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-80">
-          <input
-            type="text"
-            id="display"
-            className="w-full p-4 text-2xl text-right border-2 border-gray-300 rounded-lg mb-4"
-          />
-
-          <div className="grid grid-cols-4 gap-4">
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              7
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              8
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              9
-            </button>
-            <button className="bg-orange-400 p-4 rounded-lg text-xl text-white hover:bg-orange-500">
-              /
-            </button>
-
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              4
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              5
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              6
-            </button>
-            <button className="bg-orange-400 p-4 rounded-lg text-xl text-white hover:bg-orange-500">
-              *
-            </button>
-
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              1
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              2
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              3
-            </button>
-            <button className="bg-orange-400 p-4 rounded-lg text-xl text-white hover:bg-orange-500">
-              -
-            </button>
-
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              0
-            </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
-              .
-            </button>
-            <button className="bg-blue-400 p-4 rounded-lg text-xl text-white hover:bg-blue-500">
-              =
-            </button>
-            <button className="bg-orange-400 p-4 rounded-lg text-xl text-white hover:bg-orange-500">
-              +
-            </button>
-          </div>
-
-          <button className="bg-red-400 w-full p-4 rounded-lg text-xl text-white hover:bg-red-500 mt-4">
-            C
-          </button>
-        </div>
-      </div> */}
     </>
   );
 }
