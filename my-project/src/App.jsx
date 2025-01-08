@@ -13,6 +13,11 @@ function App() {
     setInputNum((i) => i.slice(0, -1));
   };
 
+  const percentHandeler = () => {
+    if (!inputNum) return;
+    setInputNum((i) => (+i / 100).toString());
+  };
+
   const opratorHandeler = (op) => {
     if (!inputNum) return;
     setStoredValue(inputNum);
@@ -22,21 +27,22 @@ function App() {
 
   const calculator = () => {
     if (!inputNum || !storedValue || oprator === null) return;
-    const currentNum = inputNum;
+    const currentNum = +inputNum;
+    const storedNum = +storedValue;
     let result;
 
     switch (oprator) {
       case "+":
-        result = storedValue + currentNum;
+        result = storedNum + currentNum;
         break;
       case "-":
-        result = storedValue - currentNum;
+        result = storedNum - currentNum;
         break;
       case "x":
-        result = storedValue * currentNum;
+        result = storedNum * currentNum;
         break;
       case "/":
-        result = currentNum !== 0 ? storedValue / currentNum : "Error";
+        result = currentNum !== 0 ? storedNum / currentNum : "Error";
         break;
       default:
         return;
@@ -100,7 +106,7 @@ function App() {
               3
             </button>
             <button
-              onClick={() => digitHandeler("x")}
+              onClick={() => opratorHandeler("x")}
               className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
             >
               x
@@ -124,7 +130,7 @@ function App() {
               6
             </button>
             <button
-              onClick={() => plusHandeler("+")}
+              onClick={() => opratorHandeler("+")}
               className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
             >
               +
@@ -148,12 +154,15 @@ function App() {
               9
             </button>
             <button
-              onClick={() => digitHandeler("-")}
+              onClick={() => opratorHandeler("-")}
               className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
             >
               -
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler(".")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               .
             </button>
             <button
@@ -163,7 +172,7 @@ function App() {
               0
             </button>
             <button
-              onClick={() => digitHandeler("%")}
+              onClick={percentHandeler}
               className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
             >
               %
