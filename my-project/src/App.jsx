@@ -3,12 +3,21 @@ import "./index.css";
 
 function App() {
   const [inputNum, setInputNum] = useState("");
+  const [storedValue, setStoredValue] = useState(null);
+  const [oprator, setOprator] = useState(null);
 
   const digitHandeler = (value) => {
     setInputNum((i) => i + value);
   };
   const delHandeler = () => {
     setInputNum((i) => i.slice(0, -1));
+  };
+
+  const opratorHandeler = (op) => {
+    if (!inputNum) return;
+    setStoredValue(inputNum);
+    setInputNum("");
+    setOprator(op);
   };
 
   return (
@@ -88,7 +97,7 @@ function App() {
               6
             </button>
             <button
-              onClick={() => digitHandeler("+")}
+              onClick={() => plusHandeler("+")}
               className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
             >
               +
