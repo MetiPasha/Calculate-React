@@ -1,6 +1,16 @@
+import { useState } from "react";
 import "./index.css";
 
 function App() {
+  const [inputNum, setInputNum] = useState("");
+
+  const digitHandeler = (value) => {
+    setInputNum((i) => i + value);
+  };
+  const delHandeler = () => {
+    setInputNum((i) => i.slice(0, -1));
+  };
+
   return (
     <>
       <div className="flex justify-center items-center min-h-screen ">
@@ -9,64 +19,117 @@ function App() {
             className="  w-full p-4 text-2xl text-left border-2 bg-green-800 rounded-lg mb-4 "
             type="text"
             placeholder="0"
+            value={inputNum}
+            readOnly
           />
 
           <div className="  grid grid-cols-4 gap-1">
             <button className=" p-4 rounded-lg text-xl hover:bg-orange-300 bg-orange-400 ">
               AC
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-orange-300 bg-orange-400">
+            <button
+              onClick={() => setInputNum("")}
+              className=" p-4 rounded-lg text-xl hover:bg-orange-300 bg-orange-400"
+            >
               C
             </button>
-            <button className=" p-4 rounded-lg text-xl  hover:bg-red-300 bg-red-400">
+            <button
+              onClick={delHandeler}
+              className=" p-4 rounded-lg text-xl  hover:bg-red-300 bg-red-400"
+            >
               DEL
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("/")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               /
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("1")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               1
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("2")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               2
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("3")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               3
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400">
+            <button
+              onClick={() => digitHandeler("x")}
+              className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
+            >
               x
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("4")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               4
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("5")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               5
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("6")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               6
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400">
+            <button
+              onClick={() => digitHandeler("+")}
+              className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
+            >
               +
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("7")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               7
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("8")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               8
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("9")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               9
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400">
+            <button
+              onClick={() => digitHandeler("-")}
+              className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
+            >
               -
             </button>
             <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
               .
             </button>
-            <button className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300">
+            <button
+              onClick={() => digitHandeler("0")}
+              className="bg-gray-200 p-4 rounded-lg text-xl hover:bg-gray-300"
+            >
               0
             </button>
-            <button className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400">
+            <button
+              onClick={() => digitHandeler("%")}
+              className=" p-4 rounded-lg text-xl hover:bg-yellow-300 bg-yellow-400"
+            >
               %
             </button>
             <button className=" p-4 rounded-lg text-xl hover:bg-blue-300 bg-blue-400">
